@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolletta V2</title>
+</head>
+<body>
+
+    <table border="1">
+        <tbody>
+            <tr><td><label>inserisci codice cliente </label></td><td><input type="number" id="codice cliente"></td></tr>
+            <tr><td><label>kw/h consumati </label></td><td><input type="number" id="consumo"></td></tr>
+            <tr><td><label>costo kw/h</label></td><td><input type="number" id="costo" value="0.03"></td></tr>
+            <tr><td><label>Iva </label></td><td><input type="number" id="Iva" value="22" disabled></td></tr>
+            <tr><td><label>canone </label></td><td><input type="number" id="consumo" value="20" disabled></td></tr>
+            <tr><td><button id="btn_inserisci" onclick="inserisci()"> inserisci </button></td><td> <button id="btn_calcola" onclick="calcola()"> calcola </button></td></tr>
+
+        </tbody>
+
+    </table>
+
+    <table border="1">
+        <tbody id="tbody">
+
+
+
+        </tbody>
+
+    </table>
+
+    <p id="tot"></p>
+
+<script>
+
+    
+    var cont=0;
+    v=new vett[cont];
+    var str="<tr><td>codice cliente</td><td>consumo*costoKWM</td><td>canone</td><td>iva</td><td>totale</td></tr>";
+    var codice=document.getElementById("codice cliente");  
+    var consumo=document.getElementById("consumo");
+    var costo=document.getElementById("costo");
+    var iva=document.getElementById("iva");
+    var canone=document.getElementById("canone");
+    var costoiva;
+    var costoconsumo;
+    var tot;
+    var somma;
+
+    function inserisci(){
+        
+
+        if(document.getElementById("codice cliente").value<0)
+            return alert("(codice cliente) inserisci un numero positivo");
+        if(document.getElementById("consumo").value<0)
+            return alert("(kw/h consumati) inserisci un numero positivo");
+        if(document.getElementById("costo").value<0)
+            return alert("(costo kw/h) devi inserire un numero positivo");
+        else {
+            costoconsumo=Number(consumo.value)*Number(costo.value);
+            costoiva=Number(costoconsumo.value)*Number(iva.value);
+            tot=costoconsumo.value+costoiva.value+canone.value;
+            somma+=tot.value;
+            str+="<tr><td>"+codice.value+"</td><td>" +costoconsumo+"</td><td>"+canone.value+"</td><td>"+canone.value+"</td><td>"+costoiva.value+"</td><td>"+tot.value+"</td></tr>"
+        }
+    }
+    function calcola(){
+        document.getElementById("tbody").innerHTML+=str;
+        document.getElementById("totali").innerHTML+=toString(somma);
+
+       
+    }
+    
+
+
+
+</script>
+    
+</body>
+</html>
