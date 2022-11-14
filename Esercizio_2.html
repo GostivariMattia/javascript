@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <table>
+        <tbody id="tbody">
+
+        </tbody>
+    </table>
+    
+    <script>
+        var v2=new Array;
+        var v=new Array;
+        var num;
+        var somma;
+        cont=0;
+        str="<tr><td>cont</td><td>num</td><td>somma prec</td><td>max somma prec</td></tr>";
+
+
+        while(num!=0){
+            num=Number(prompt("inserisci un numero (inserisci 0 per terminare)"));
+            v.push(num);
+        }
+
+
+        for(i=0;i<v.length;i++){
+            str+="<tr><td>"+i+"</td>";
+            str+="<td>"+v[i]+"</td>";
+            for(j=0;j<i;j++){
+                somma+=v[j];
+                str+="<td>"+somma.value+"</td>";
+            }
+        if(somma<v[i]){
+            v2.push(v[i]);
+            str+="<td>si</td></tr>";
+        }
+        else
+            str+="<td>no</td></tr>";
+    }
+
+
+    document.getElementById("tbody").innerHTML=str;
+
+    console.log("i numeri che risultano maggiori della somma dei precedenti sono: ");
+    for(k=0;k<v2.length;v2++){
+        console.log(v2[k]);
+    }
+
+
+
+
+    </script>
+</body>
+</html>
