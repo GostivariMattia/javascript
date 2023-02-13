@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <title>Bolletta 1.1</title>
+  </head>
+  <body>
+    <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">codice cliente</th>
+            <td><input type="text" id="codice"></td>
+          </tr>
+          <tr>
+            <th scope="row">KM/w consumati</th>
+            <td><input type="text" id="consumo"></td>
+          </tr>
+          <tr>
+            <th scope="row">costo KM/w</th>
+            <td><input type="text" id="costo" value="0.03" disabled></td>
+          </tr>
+          <tr>
+            <th scope="row">iva</th>
+            <td><input type="text" id="iva" value="22" disabled></td>
+          </tr>
+          <tr>
+            <th scope="row">canone</th>
+            <td><input type="text" id="canone" value="20" disabled></td>
+          </tr>
+          <tr>
+            <th scope="row"><button type="button" class="btn btn-primary" onclick="calcola()">calcola</button></th>
+        </tr>
+        </tbody>
+      </table>
+
+      <div id="myDiv">
+
+      </div>
+      
+      <script>
+        var cont=0;
+        function calcola(){
+        var codice=document.getElementById("codice").value;
+        if(codice=="")
+        alert("devi inserire un codice cliente");
+        else{
+        var consumo=document.getElementById("consumo").value;
+        if(consumo=="")
+        alert("devi inserire un consumo");
+        else{
+        var costo=document.getElementById("costo").value;
+        var iva=document.getElementById("iva").value;
+        var canone=document.getElementById("canone").value;
+        iva=Number(iva);
+        costo=Number(costo);
+        canone=Number(canone);
+        consumo=Number(consumo);
+        var costoconsumo=costo*consumo;
+        var costoiva=costoconsumo+((costoconsumo/100)*iva);
+        var totale=costoiva+canone;
+        }
+    }
+
+        str=`<table class="table table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">codice</th>
+      <th scope="col">consumo*costoKm/w</th>
+      <th scope="col">canone</th>
+      <th scope="col">iva</th>
+      <th scope="col">totale</th>
+    </tr>
+  </thead>
+  <tbody id="mytable">
+    <tr>
+      <th scope="row">${codice}</th>
+      <td>${consumo}*${costo}=${costoconsumo.toFixed(2)}€</td>
+      <td>${canone}€</td>
+      <td>${costoconsumo}*${iva}%=${costoiva.toFixed(2)}€</td>
+      <td>${totale.toFixed(2)}€</td>
+    </tr>`;
+
+    str2=`<tr>
+      <th scope="row">${codice}</th>
+      <td>${consumo}*${costo}=${costoconsumo.toFixed(2)}€</td>
+      <td>${canone}€</td>
+      <td>${costoconsumo}*${iva}%=${costoiva.toFixed(2)}€</td>
+      <td>${totale.toFixed(2)}€</td>
+     </tr>`;
+
+if(cont==0)
+document.getElementById("myDiv").innerHTML+=str;
+else
+document.getElementById("mytable").innerHTML+=str2;
+
+
+cont+=1;
+
+        
+        }
+      </script>
+    
+      
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
